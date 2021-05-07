@@ -35,17 +35,17 @@ v-if 也是惰性的：如果在初始渲染时条件为假，则什么也不做
 受现代 JavaScript 的限制 (而且 Object.observe 也已经被废弃)，Vue 不能检测到对象属性的添加或删除。由于 Vue 会在初始化实例时对属性执行 getter/setter 转化过程，所以属性必须在 data 对象上存在才能让 Vue 转换它，这样才能让它是响应的。
 
 Vue 不允许在已经创建的实例上动态添加新的根级响应式属性 (root-level reactive property)。然而它可以使用
- ```
+```js
  Vue.set(object, key, value)
- ```
-方法将响应属性添加到嵌套的对象上：
-  ```
- Vue.set(vm.someObject, 'b', 2)
- ```
-您还可以使用 vm.$set 实例方法，这也是全局 Vue.set 方法的别名：
 ```
+方法将响应属性添加到嵌套的对象上：
+```js
+ Vue.set(vm.someObject, 'b', 2)
+```
+您还可以使用 vm.$set 实例方法，这也是全局 Vue.set 方法的别名：
+```js
  this.$set(this.someObject,'b',2)
- ```
+```
 ***
 ## 四 在组件内部实现一个双向数据绑定
 在有些情况下，我们可能需要对一个 prop 进行“双向绑定”。不幸的是，真正的双向绑定会带来维护上的问题，因为子组件可以修改父组件，且在父组件和子组件都没有明显的改动来源。
@@ -53,21 +53,21 @@ Vue 不允许在已经创建的实例上动态添加新的根级响应式属性 
 这也是为什么我们推荐以 update:myPropName 的模式触发事件取而代之。
 
 在一个包含 title prop 的假设的组件中，我们可以用以下方法表达对其赋新值的意图：
-```
+```js
 this.$emit('update:title', newTitle)
 ```
 然后父组件可以监听那个事件并根据需要更新一个本地的数据属性。例如：
-```
+```js
 <text-document v-bind:title="doc.title" v-on:update:title="doc.title = $event" ></text-document>
 ```
 为了方便起见，我们为这种模式提供一个缩写，即 .sync 修饰符：
-```
+```js
 <text-document v-bind:title.sync="doc.title"></text-document>
 ```
 ***
 ## 五 监测某个属性值的变化
 比如现在需要监控data中， obj.a 的变化。Vue中监控对象属性的变化你可以这样：
-```
+```js
 watch: {
       obj: {
       handler (newValue, oldValue) {
@@ -79,7 +79,7 @@ watch: {
   ```
 deep属性表示深层遍历，但是这么写会监控obj的所有属性变化，并不是我们想要的效果，所以做点修改
 
-```
+```js 
 watch: {
 'obj.a': {
       handler (newName, oldName) {
@@ -89,7 +89,7 @@ watch: {
   }
   ```
 还有一种方法，可以通过computed 来实现，只需要：
-  ```
+  ```js
   computed: {
       a1 () {
   return this.obj.a
@@ -103,7 +103,7 @@ watch: {
 delete只是被删除的元素变成了 empty/undefined 其他的元素的键值还是不变。
 
 Vue.$delete 直接删除了数组 改变了数组的键值。
-  ```
+  ```js
   let a=[1,2,3,4];
   let b=[5,6,7,8];
   delete a[1]
@@ -156,7 +156,7 @@ Vue.$delete 直接删除了数组 改变了数组的键值。
 ## 十一 路由懒加载
 
 当执行build命令构建生产包时，我之前的项目一般都会生成一个js文件，此时js文件相对较大，可能会影响页面的加载。路由的懒加载就是把不同路由对应的组件分割成不同的代码块，然后在当路由被访问时再加载对应组件，相对打包成一整个文件来说，会更加高效。
- ```
+ ```js
  const Foo = () => import('./Foo.vue')
 
  const router = new VueRouter({
@@ -168,7 +168,7 @@ Vue.$delete 直接删除了数组 改变了数组的键值。
 ## 十二 父子组件双向数据绑定的实现
 
 除了子组件使用$emit（）向外传值的方式之外，我们还可以通过v-model来实现父子组件的相互传值。但是双向数据绑定又会带来维护上的问题，因为子组件可以修改父组件，且在父子组件之间都没有明显的改动来源。推荐使用.sync修饰符，组件内部以'this.$emit('update:myPropName',value)'来对myPropName进行赋值。
- ```
+ ```js
 v-model:
  Vue.component('base-checkbox', {
    model: {
@@ -187,7 +187,7 @@ v-model:
    `
  })
  <base-checkbox v-model="lovingVue"></base-checkbox>
- 这里的 lovingVue 的值将会传入这个名为 checked 的 prop。同时当 <base-checkbox> 触发一个 change 事件并附带一个新的值的时候，这个 lovingVue 的属性将会被更新
+ //这里的 lovingVue 的值将会传入这个名为 checked 的 prop。同时当 <base-checkbox> 触发一个 change 事件并附带一个新的值的时候，这个 lovingVue 的属性将会被更新
  .sync:
  <text-document v-bind:title.sync="doc.title"></text-document>
  this.$emit('update:title', newTitle)
@@ -197,7 +197,7 @@ v-model:
 * created:在实例创建完成后被立即调用。在这一步，实例已完成以下的配置：数据观测 (data observer)，属性和方法的运算，watch/event 事件回调。然而，挂载阶段还没开始，$el 属性目前不可见。
 * beforeMount:在挂载开始之前被调用：相关的 render 函数首次被调用。 该钩子在服务器端渲染期间不被调用。
 * mounted:el 被新创建的 vm.$el 替换，并挂载到实例上去之后调用该钩子。如果 root 实例挂载了一个文档内元素，当 mounted 被调用时 vm.$el 也在文档内，该钩子在服务器端渲染期间不被调用。注意 mounted 不会承诺所有的子组件也都一起被挂载。如果你希望等到整个视图都渲染完毕，可以用 vm.$nextTick 替换掉 mounted:
- ```
+ ```js
  mounted: function () {
    this.$nextTick(function () {
      // Code that will run only after the
@@ -240,7 +240,7 @@ React Native 能使你用相同的组件模型编写有本地渲染能力的 APP
 
 ## 十六 nextTick
 在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM（DOM树更新，未发生UI Render）。
- ```
+ ```js
  // 修改数据
  vm.msg = 'Hello'
  // DOM 还没有更新
@@ -265,8 +265,8 @@ React Native 能使你用相同的组件模型编写有本地渲染能力的 APP
 ## 十九 nextTick的实现原理
 
 尽管MVVM框架并不推荐访问DOM，但有时候确实会有这样的需求，尤其是和第三方插件进行配合的时候，免不了要进行DOM操作。而nextTick就提供了一个桥梁，确保我们操作的是更新后的DOM。
- ```
- MutationObserver是HTML5新增的属性，用于监听DOM修改事件，能够监听到节点的属性、文本内容、子节点等的改动，是一个功能强大的利器，基本用法如下：
+ ```js
+ // MutationObserver是HTML5新增的属性，用于监听DOM修改事件，能够监听到节点的属性、文本内容、子节点等的改动，是一个功能强大的利器，基本用法如下：
  //MO基本用法
  var observer = new MutationObserver(function(){
    //这里是回调函数
@@ -288,22 +288,22 @@ React Native 能使你用相同的组件模型编写有本地渲染能力的 APP
       textNode.data = String(counter)
    }
  }
- 简单解释一下，如果检测到浏览器支持MO，则创建一个文本节点，监听这个文本节点的改动事件，以此来触发nextTickHandler（也就是DOM更新完毕回调）的执行。后面的代码中，会执行手工修改文本节点属性，这样就能进入到回调函数了。
+ //简单解释一下，如果检测到浏览器支持MO，则创建一个文本节点，监听这个文本节点的改动事件，以此来触发nextTickHandler（也就是DOM更新完毕回调）的执行。后面的代码中，会执行手工修改文本节点属性，这样就能进入到回调函数了。
  
- 准备的说，vue不是使用MO进行变动监听，而是使用队列控制的方式达到目的，因为每次event loop的最后，都会有一个UI render的步骤，也就是更新DOM，只要让nextTick的代码放到UI render的后面执行，就能访问到更新的DOM。
+ //准备的说，vue不是使用MO进行变动监听，而是使用队列控制的方式达到目的，因为每次event loop的最后，都会有一个UI render的步骤，也就是更新DOM，只要让nextTick的代码放到UI render的后面执行，就能访问到更新的DOM。
  
- 那么vue是如果进行队列控制的？使用setTimeout？可以实现，但是存在很大缺陷，就是无法保证性能，极可能存在性能浪费，要弄清这个问题的话，我们必须要提到另外两个名词：microtask,macrotask。
- task队列中的任务被叫做macrotask，每一次事件循环都包含一个microtask队列，在循环结束后会依次执行队列中的microtask并移除，然后再开始下一次事件循环。在执行microtask的过程中后加入microtask队列的微任务，也会在下一次事件循环之前被执行。也就是说，macrotask总要等到microtask都执行完后才能执行，microtask有着更高的优先级。
- microtask的这一特性，简直是做队列控制的最佳选择啊！vue进行DOM更新内部也是调用nextTick来做异步队列控制。而当我们自己调用nextTick的时候，它就在更新DOM的那个microtask后追加了我们自己的回调函数，从而确保我们的代码在DOM更新后执行，同时也避免了setTimeout可能存在的多次执行问题。
+ //那么vue是如果进行队列控制的？使用setTimeout？可以实现，但是存在很大缺陷，就是无法保证性能，极可能存在性能浪费，要弄清这个问题的话，我们必须要提到另外两个名词：microtask,macrotask。
+ //task队列中的任务被叫做macrotask，每一次事件循环都包含一个microtask队列，在循环结束后会依次执行队列中的microtask并移除，然后再开始下一次事件循环。在执行microtask的过程中后加入microtask队列的微任务，也会在下一次事件循环之前被执行。也就是说，macrotask总要等到microtask都执行完后才能执行，microtask有着更高的优先级。
+ //microtask的这一特性，简直是做队列控制的最佳选择啊！vue进行DOM更新内部也是调用nextTick来做异步队列控制。而当我们自己调用nextTick的时候，它就在更新DOM的那个microtask后追加了我们自己的回调函数，从而确保我们的代码在DOM更新后执行，同时也避免了setTimeout可能存在的多次执行问题。
  
- 常见的microtask有：Promise、MutationObserver、Object.observe(废弃)，以及nodejs中的process.nextTick.
- 咦？好像看到了MutationObserver，难道说vue用MO是想利用它的microtask特性，而不是想做DOM监听？对喽，就是这样的。核心是microtask，用不用MO都行的。事实上，vue在2.5版本中已经删去了MO相关的代码，因为它是HTML5新增的特性，在iOS上尚有bug。
+ //常见的microtask有：Promise、MutationObserver、Object.observe(废弃)，以及nodejs中的process.nextTick.
+ //咦？好像看到了MutationObserver，难道说vue用MO是想利用它的microtask特性，而不是想做DOM监听？对喽，就是这样的。核心是microtask，用不用MO都行的。事实上，vue在2.5版本中已经删去了MO相关的代码，因为它是HTML5新增的特性，在iOS上尚有bug。
  
- 那么最优的microtask策略就是Promise了，而令人尴尬的是，Promise是ES6新增的东西，也存在兼容问题呀~ 所以vue就面临一个降级策略。
+ //那么最优的microtask策略就是Promise了，而令人尴尬的是，Promise是ES6新增的东西，也存在兼容问题呀~ 所以vue就面临一个降级策略。
  
- vue的降级策略：上面我们讲到了，队列控制的最佳选择是microtask，而microtask的最佳选择是Promise.但如果当前环境不支持Promise，vue就不得不降级为macrotask来做队列控制了。macrotask有哪些可选的方案呢？前面提到了setTimeout是一种，但它不是理想的方案。因为setTimeout执行的最小时间间隔是约4ms的样子，略微有点延迟。还有其他的方案吗？在vue2.5的源码中，macrotask降级的方案依次是：setImmediate、MessageChannel、setTimeout.  setImmediate是最理想的方案了，可惜的是只有IE和nodejs支持。MessageChannel的onmessage回调也是microtask，但也是个新API，面临兼容性的尴尬...所以最后的兜底方案就是setTimeout了，尽管它有执行延迟，可能造成多次渲染，算是没有办法的办法了.
+ //vue的降级策略：上面我们讲到了，队列控制的最佳选择是microtask，而microtask的最佳选择是Promise.但如果当前环境不支持Promise，vue就不得不降级为macrotask来做队列控制了。macrotask有哪些可选的方案呢？前面提到了setTimeout是一种，但它不是理想的方案。因为setTimeout执行的最小时间间隔是约4ms的样子，略微有点延迟。还有其他的方案吗？在vue2.5的源码中，macrotask降级的方案依次是：setImmediate、MessageChannel、setTimeout.  setImmediate是最理想的方案了，可惜的是只有IE和nodejs支持。MessageChannel的onmessage回调也是microtask，但也是个新API，面临兼容性的尴尬...所以最后的兜底方案就是setTimeout了，尽管它有执行延迟，可能造成多次渲染，算是没有办法的办法了.
  
- 附上vue源码：
+ //附上vue源码：
  if (typeof Promise !== 'undefined' && isNative(Promise)) {
    var p = Promise.resolve();
    timerFunc = function () {
@@ -352,6 +352,13 @@ React Native 能使你用相同的组件模型编写有本地渲染能力的 APP
 
 ## 二十 vue的异步更新队列
 vue在更新DOM时是异步执行的，只要侦听到数据变化，vue将开启一个队列，并缓冲在同一个事件循环中发生的所有数据更新。如果同一个watcher被多次触发，只会被推入队列中一次。这种在缓冲时去除重复数据对于避免不必要的计算和DOM操作是非常重要的。然后，在下一个的事件循环'tick'中，vue刷新队列并执行实际工作。vue在内部对异步队列尝试使用原生的 Promise.then、MutationObserver 和 setImmediate，如果执行环境不支持，则会采用 setTimeout(fn, 0) 代替。
+::: tip 数据更新机制
+vue中DOM是异步更新，数据是同步更新。 nextTick存在的意义是提供获取异步更新完成的时机，nextTick的执行时机是虚拟DOM树更新完成，尚未开始真实DOM渲染的中间时机。
+:::
+```js
+this.a =1;
+console.log(this.a); //1  数据同步更新
+```
 
 
  

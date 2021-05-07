@@ -18,7 +18,7 @@
 
 二、如何表示复杂度
 如何表示算法复杂度，具体来讲就是代码执行的时间、执行消耗的存储空间。例如：
-```
+```js
 function cal(n) {
     let sum = 0; // 1 unit_time
     let i = 0; // 1 unit_time
@@ -46,7 +46,7 @@ O：表示代码的执行时间 T(n) 与 f(n) 表达式成正比
 当 n 无限大时，时间复杂度 T(n) 受 n 的最高数量级影响最大，与f(n) 中的常量、低阶、系数关系就不那么大了。所以我们分析代码的时间复杂度时，仅仅关注代码执行次数最多的那段就可以了。
 
 看一个例子：
-```
+```js
 function fun1(n) {
     let sum = 0,i = 0; 
     for(; i <= n; i++) {
@@ -86,7 +86,7 @@ fun3 的时间复杂度是 O(n * T(fun)) = O(n*n) ，即 O(n2) 。
 
 常量阶： O(1)：当算法中不存在循环语句、递归语句，即使有成千上万行的代码，其时间复杂度也是Ο(1)
 对数阶：O(logn): 简单介绍一下
-```
+```js
 let i=1;
 while (i <= n)  {
   i = i * 2;
@@ -103,7 +103,7 @@ while (i <= n)  {
 阶乘阶：O(n!)
 四、空间复杂度
 时间复杂度表示算法的执行时间与数据规模之间的增长关系。类比一下，空间复杂度表示算法的存储空间与数据规模之间的增长关系。例如：
-```
+```js
 function fun(n) {
     let a = [];
     for (let i = 0; i < n; i++) {
@@ -128,7 +128,7 @@ function fun(n) {
 
 一、数组（基础）
 一种最基础的数据结构，每种编程语言都有，它编号从 0 开始，代表一组连续的储存结构，用来储存同一种类型的数据。
-```
+```js
 let arr = [1, 2, 3]
 ```
 
@@ -145,19 +145,16 @@ let arr = [1, 2, 3]
 插入或删除： 时间复杂度为 O(n)；
 
 在 JavaScript 中的数组几乎是万能的，它不光可以作为一个普通的数组使用，可以作为栈或队列使用。
-
-数组：
-```
+```js
+//数组：
 let array = [1, 2, 3]
-栈：
-
+//栈：
 let stack = [1, 2, 3]
 // 进栈
 stack.push(4)
 // 出栈
 stcak.pop()
-队列：
-
+//队列：
 let queue = [1, 2, 3]
 // 进队
 queue.push(4)
@@ -166,7 +163,7 @@ queue.shift()
 ```
 二、JavaScript 中，数组可以保存不同类型值
 看一下 Chrome v8 源码：
-```
+```js
 // The JSArray describes JavaScript Arrays
 //  Such an array can be in one of two modes:
 //    - fast, backing storage is a FixedArray and length <= elements.length();
@@ -186,7 +183,7 @@ class JSArray: public JSObject {
 我们可以看到 JSArray 是继承自 JSObject 的，所以在 JavaScript 中，数组可以是一个特殊的对象，内部也是以 key-value 形式存储数据，所以 JavaScript 中的数组可以存放不同类型的值。
 
 三、JavaScript 中，数组的存储
-```
+```js
 // The JSArray describes JavaScript Arrays
 //  Such an array can be in one of two modes:
 //    - fast, backing storage is a FixedArray and length <= elements.length();
@@ -214,7 +211,7 @@ FixedArray 是 V8 实现的一个类似于数组的类，它表示一段连续�
 
 2. 慢数组（SlowElements）
 慢数组以哈希表的形式存储在内存空间里，它不需要开辟连续的存储空间，但需要额外维护一个哈希表，与快数组相比，性能相对较差。
-```
+```js
 // src/objects/dictionary.h
 class EXPORT_TEMPLATE_DECLARE(V8_EXPORT_PRIVATE) Dictionary
     : public HashTable<Derived, Shape> {
@@ -233,7 +230,7 @@ class EXPORT_TEMPLATE_DECLARE(V8_EXPORT_PRIVATE) Dictionary
 
 3. 什么时候会从 fast 转变为 slow 喃？
 从 Chrome V8 源码上看，
-```
+```js
 // src/objects/js-objects.h
 static const uint32_t kMaxGap = 1024;
 
@@ -285,7 +282,7 @@ static inline bool ShouldConvertToSlowElements(JSObject object,
 当加入的索引值 index 比当前容量 capacity 差值大于等于 1024 时（index - capacity >= 1024）
 快数组新容量是扩容后的容量 3 倍之多时
 例如：向快数组里增加一个大索引同类型值
-```
+```js
 var arr = [1, 2, 3]
 arr[2000] = 10;
 ```
@@ -293,7 +290,7 @@ arr[2000] = 10;
 
 4. 什么时候会从 slow 转变为 fast 喃？
 我们已经知道在什么时候会出现由快变慢，那由慢变快就很简单了
-```
+```js
 static bool ShouldConvertToFastElements(JSObject object,
                                         NumberDictionary dictionary,
                                         uint32_t index,
@@ -323,7 +320,7 @@ static bool ShouldConvertToFastElements(JSObject object,
 
 四、JavaScript 中，数组的动态扩容与减容（FastElements）
 默认空数组初始化大小为 4 :
-```
+```js
 // Number of element slots to pre-allocate for an empty array.
 static const int kPreallocatedArrayElements = 4;
 ```
@@ -332,7 +329,7 @@ static const int kPreallocatedArrayElements = 4;
 在 Chrome 源码中， push 的操作是用汇编实现的，在 c++ 里嵌入的汇编，以提高执行效率，并且在汇编的基础上用 c++ 封装了一层，在编译执行的时候，会将这些 c++ 代码转成汇编代码。
 
 计算新容量的函数：
-```
+```js
 // js-objects.h
 static const uint32_t kMinAddedElementsCapacity = 16;
 
@@ -372,7 +369,7 @@ push 操作时，发现数组内存不足
 不同于数组的 push 使用汇编实现的， pop 使用 c++ 实现的。
 
 判断是否进行减容：
-```
+```js
 if (2 * length <= capacity) {
   // If more than half the elements won't be used, trim the array.
   isolate->heap()->RightTrimFixedArray(*backing_store, capacity - length);
@@ -405,7 +402,7 @@ JavaScript 中， JSArray 继承自 JSObject ，或者说它就是一个特殊�
 编写一个程序将数组扁平化去并除其中重复部分数据，最终得到一个升序且不重复的数组
 
 答案：
-```
+```js
 var arr = [ [1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14] ] ] ], 10]
 // 扁平化
 let flatArr = arr.flat(4)
@@ -436,10 +433,10 @@ LRU （ Least Recently Used ：最近最少使用 ）缓存淘汰策略，故名
 二、LRU 在 keep-alive (Vue) 上的实现
 1. keep-alive
 keep-alive 在 vue 中用于实现组件的缓存，当组件切换时不会对当前组件进行卸载。
-```
+```js
 <!-- 基本 -->
 <keep-alive>
-  <component :is="view"></component>
+  <component is="view"></component>
 </keep-alive>
 ```
 最常用的两个属性：include 、 exculde ，用于组件进行有条件的缓存，可以用逗号分隔字符串、正则表达式或一个数组来表示。
@@ -449,7 +446,7 @@ keep-alive 在 vue 中用于实现组件的缓存，当组件切换时不会对�
 下面我们透过 vue 源码看一下具体的实现👇
 
 2. 从 vue 源码看 keep-alive 的实现
-```
+```js
 export default {
   name: "keep-alive",
   // 抽象组件属性 ,它在组件实例建立父子关系的时候会被忽略,发生在 initLifecycle 的过程中
@@ -591,7 +588,7 @@ export function remove (arr: Array<any>, item: any): Array<any> | void {
 你是否可以在 O(1) 时间复杂度内完成这两种操作？
 
 示例:
-```
+```js
 LRUCache cache = new LRUCache( 2 /* 缓存容量 */ );
 
 cache.put(1, 1);
@@ -623,7 +620,7 @@ cache.get(4);       // 返回  4
 一、单链表
 
 ![单链表](https://camo.githubusercontent.com/1ff6e05c5a770474c4e98705cabd818da222f9dd/68747470733a2f2f63646e2e6e6c61726b2e636f6d2f79757175652f302f323032302f706e672f3237333530362f313538343138393434353333342d64363537623037372d373262332d346439352d386164622d6439313862363534333535372e706e67)
-```
+```js
 function List() {
   // 节点
   let Node = function (element) {
@@ -719,7 +716,7 @@ function List() {
 
 ![双链表](https://camo.githubusercontent.com/3141298bf41dc4da5aeff6e62b0dc722281ea54f/687474703a2f2f7265736f757263652e6d757969792e636e2f696d6167652f32303230303332363233303934372e706e67)
 
-```
+```js
 function DoublyLinkList() {
   let Node = function (element) {
     this.element = element;
@@ -850,7 +847,7 @@ JS 内存机制：栈（基本类型、引用类型地址）与堆（引用类�
 栈是一种遵从后进先出 (LIFO / Last In First Out) 原则的有序集合。栈的操作主要有： push(e) (进栈)、 pop() (出栈)、 isEmpty() (判断是否是空栈)、 size() (栈大小)，以及 clear() 清空栈，具体实现也很简单。
 
 二、代码实现
-```
+```js
 function Stack() {
   let items = []
   this.push = function(e) { 
@@ -885,7 +882,7 @@ function Stack() {
 但单线程有一个问题：如果任务队列里有一个任务耗时很长，导致这个任务后面的任务一直排队等待，就会发生页面卡死，严重影响用户体验。
 
 为了解决这个问题，JavaScript 将任务的执行模式分为两种：同步和异步。
-```
+```js
 // 同步任务
 let a = 1
 console.log(a) // 1// 同步任务
@@ -904,7 +901,7 @@ setTimeout(() => {
 
 例如上例：
 
-```$xslt
+```js
 setTimeout(() => {
     console.log('时间到')
 }, 1000)
@@ -924,7 +921,7 @@ setTimeout(() => {
 我们知道，在 JavaScript 中有很多函数，经常会出现一个函数调用另外一个函数的情况，调用栈就是用来管理函数调用关系的一种栈结构 。
 
 那么它是如何去管理函数调用关系喃？我们举例说明：
-```$xslt
+```js
 var a = 1
 function add(a) {
   var b = 2
@@ -945,7 +942,7 @@ add(a)
 * 栈溢出
 
 我们知道调用栈是用来管理执行上下文的一种数据结构，它是有大小的，当入栈的上下文过多的时候，它就会报栈溢出，例如：
-```$xslt
+```js
 function add() {
   return 1 + add()
 }
@@ -959,7 +956,7 @@ add 函数不断的递归，不断的入栈，调用栈的容量有限，它就�
 两种方式，一种是断点调试，这种很简单，我们日常开发中都用过。
 
 一种是 console.trace()
-```$xslt
+```js
 function sum(){
   return add()
 }
@@ -1070,7 +1067,7 @@ pop() —— 删除栈顶的元素。
 top() —— 获取栈顶元素。
 getMin() —— 检索栈中的最小元素。
 示例:
-```$xslt
+```js
 MinStack minStack = new MinStack();
 minStack.push(-2);
 minStack.push(0);
