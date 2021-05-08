@@ -360,6 +360,9 @@ this.a =1;
 console.log(this.a); //1  数据同步更新
 ```
 
+## 二十一 vue3.0的proxy和2.0的defineproperty对比
+
+## 二十二 vue diff算法进化
 
  
  
