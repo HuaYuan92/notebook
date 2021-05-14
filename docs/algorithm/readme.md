@@ -1,4 +1,4 @@
-### 算法
+# 算法
 
 ## 一 如何分析、统计算法的执行效率和资源消耗
 [github](https://github.com/sisterAn/JavaScript-Algorithms/issues/1)
