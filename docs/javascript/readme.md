@@ -13,3 +13,5 @@
 ## 六 Promise实现
 
 ## 七 reduce的相关使用
+
+## 八 Class 和Function的区别
