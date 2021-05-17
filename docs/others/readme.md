@@ -9,6 +9,7 @@
 ## 四 前端监控原理
 
 ## 五 CSRF攻击
+[实现一个CSRF攻击](https://mp.weixin.qq.com/s/Y7MNhOUEvLZJ7wwkEobC4g)
 
 ## 六 中间人攻击
 

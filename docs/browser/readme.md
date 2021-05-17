@@ -2,7 +2,8 @@
 
 ## 一 缓存
 
-[参考资料](https://www.jianshu.com/p/54cc04190252)
+[参考资料-简书](https://www.jianshu.com/p/54cc04190252) \
+[参考资料-MDN HTTP CACHING](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Caching)
 
 缓存可以说是性能优化中简单高效的一种优化方式了。一个优秀的缓存策略可以缩短网页请求资源的距离，减少延迟，并且由于缓存文件可以重复利用，还可以减少带宽，降低网络负荷。
 
