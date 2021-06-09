@@ -149,3 +149,5 @@ HTTP Header 实现：Expires 和 Cache-Control。
 ## 三 如何构建一个浏览器引擎
 
 ## 四 preload和prefetch
+## 五 CORS
+[CORS-MDN](https://developer.mozilla.org/zh-CN/docs/Glossary/CORS)
