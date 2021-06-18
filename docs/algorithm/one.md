@@ -1,4 +1,4 @@
-## 一 如何分析、统计算法的执行效率和资源消耗
+# 一 如何分析、统计算法的执行效率和资源消耗
 [github](https://github.com/sisterAn/JavaScript-Algorithms/issues/1)
 [blog](https://blog.csdn.net/qq_41523096/article/details/82142747)
 
@@ -102,7 +102,7 @@ while (i <= n)  {
 指数阶：O(2k)
 阶乘阶：O(n!)
 
-##四、空间复杂度
+## 四、空间复杂度
 
 时间复杂度表示算法的执行时间与数据规模之间的增长关系。类比一下，空间复杂度表示算法的存储空间与数据规模之间的增长关系。例如：
 ```js

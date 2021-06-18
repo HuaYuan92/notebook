@@ -4,7 +4,7 @@ heroImage: /logo.png
 heroText: NoteBook
 tagline: HuaYuan92
 actionText: START →
-actionLink: /algorithm/
+actionLink: /algorithm/one
 ---
 
 ::: tip 框架
