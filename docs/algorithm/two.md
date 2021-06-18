@@ -1,4 +1,4 @@
-# 二 从Chrome V8源码看JavaScript数组
+# 数组
 [github](https://github.com/sisterAn/JavaScript-Algorithms/issues/2)
 
 ## 一、数组（基础）

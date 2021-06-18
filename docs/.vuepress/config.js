@@ -21,12 +21,12 @@ module.exports = {
     ],
     sidebar: {
       '/algorithm/': [
-        ['one', '一 如何分析、统计算法的执行效率和资源消耗'],
-        ['two', '二 从Chrome V8源码看JavaScript数组'],
-        ['three', '三 从浏览器缓存淘汰策略和Vue的keep-alive学习LRU算法'],
-        ['four', '四 链表原来如此简单'],
-        ['five', '五 全方位解读前端用到的栈结构（调用栈、堆、垃圾回收等）'],
-        ['six', '六 一看就懂的队列及配套算法题'],
+        ['one', '复杂度'],
+        ['two', '数组'],
+        ['three', 'LRU算法'],
+        ['four', '链表'],
+        ['five', '栈、堆、垃圾回收）'],
+        ['six', '队列'],
       ],
     },
     smoothScroll: true,

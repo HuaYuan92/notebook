@@ -1,4 +1,4 @@
-# 三 从浏览器缓存淘汰策略和Vue的keep-alive学习LRU算法
+# LRU算法
 [github](https://github.com/sisterAn/JavaScript-Algorithms/issues/9)
 
 ## 一、LRU 缓存淘汰策略

@@ -1,4 +1,4 @@
-# 一 如何分析、统计算法的执行效率和资源消耗
+# 复杂度
 [github](https://github.com/sisterAn/JavaScript-Algorithms/issues/1)
 [blog](https://blog.csdn.net/qq_41523096/article/details/82142747)
 
