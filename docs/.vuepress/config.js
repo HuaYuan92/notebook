@@ -9,7 +9,7 @@ module.exports = {
     logo: '/logo.png',
     nav: [
       {text: 'Home', link: '/'},
-      {text: 'Algorithm', link: '/algorithm/'},
+      {text: 'Algorithm', link: '/algorithm/one'},
       {text: 'Browser', link: '/browser/'},
       {text: 'Vue', link: '/vue/'},
       {text: 'JS', link: '/javascript/'},
