@@ -11,7 +11,7 @@ module.exports = {
       {text: 'Home', link: '/'},
       {text: 'Algorithm', link: '/algorithm/one'},
       {text: 'Browser', link: '/browser/'},
-      {text: 'Vue', link: '/vue/'},
+      {text: 'Vue', link: '/vue/one'},
       {text: 'JS', link: '/javascript/'},
       {text: 'CSS', link: '/css/'},
       {text: 'Network', link: '/network/'},
@@ -28,6 +28,10 @@ module.exports = {
         ['five', '栈、堆、垃圾回收）'],
         ['six', '队列'],
       ],
+      '/vue/': [
+        ['one', '基础'],
+        ['two', '探秘nextTick']
+      ]
     },
     smoothScroll: true,
     lastUpdated: 'Last Updated',

@@ -16,7 +16,7 @@ actionLink: /algorithm/one
 :::
 
 ::: warning 浏览器
-待补充
+待补充~
 :::
 
 ::: warning 网络
