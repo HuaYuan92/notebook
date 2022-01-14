@@ -8,7 +8,7 @@
     <link rel="icon" href="/notebook/logo.png">
     <meta name="description" content="my notebook --xy">
     
-    <link rel="preload" href="/notebook/assets/css/0.styles.46e04c92.css" as="style"><link rel="preload" href="/notebook/assets/js/app.fe60a1a8.js" as="script"><link rel="preload" href="/notebook/assets/js/2.da5ddc4c.js" as="script"><link rel="preload" href="/notebook/assets/js/7.7ed7eeac.js" as="script"><link rel="prefetch" href="/notebook/assets/js/10.fedc3fe3.js"><link rel="prefetch" href="/notebook/assets/js/11.d9da3007.js"><link rel="prefetch" href="/notebook/assets/js/12.42c126ae.js"><link rel="prefetch" href="/notebook/assets/js/13.ba7999c3.js"><link rel="prefetch" href="/notebook/assets/js/14.288834e1.js"><link rel="prefetch" href="/notebook/assets/js/15.ebcc7187.js"><link rel="prefetch" href="/notebook/assets/js/16.b66f9fe6.js"><link rel="prefetch" href="/notebook/assets/js/17.ddb9cbba.js"><link rel="prefetch" href="/notebook/assets/js/18.6bd29043.js"><link rel="prefetch" href="/notebook/assets/js/19.763bc2a5.js"><link rel="prefetch" href="/notebook/assets/js/20.e7805673.js"><link rel="prefetch" href="/notebook/assets/js/21.5b2e4c52.js"><link rel="prefetch" href="/notebook/assets/js/3.9482a68a.js"><link rel="prefetch" href="/notebook/assets/js/4.c22d2a48.js"><link rel="prefetch" href="/notebook/assets/js/5.f9c5e223.js"><link rel="prefetch" href="/notebook/assets/js/6.baa1fc2a.js"><link rel="prefetch" href="/notebook/assets/js/8.1756074b.js"><link rel="prefetch" href="/notebook/assets/js/9.de3646f5.js">
+    <link rel="preload" href="/notebook/assets/css/0.styles.46e04c92.css" as="style"><link rel="preload" href="/notebook/assets/js/app.1ae419a7.js" as="script"><link rel="preload" href="/notebook/assets/js/2.da5ddc4c.js" as="script"><link rel="preload" href="/notebook/assets/js/7.0c4d68ce.js" as="script"><link rel="prefetch" href="/notebook/assets/js/10.a9447afd.js"><link rel="prefetch" href="/notebook/assets/js/11.50c4e498.js"><link rel="prefetch" href="/notebook/assets/js/12.d75211e7.js"><link rel="prefetch" href="/notebook/assets/js/13.644bf7ee.js"><link rel="prefetch" href="/notebook/assets/js/14.66f3a9fa.js"><link rel="prefetch" href="/notebook/assets/js/15.f3eefe6c.js"><link rel="prefetch" href="/notebook/assets/js/16.3f4a7d30.js"><link rel="prefetch" href="/notebook/assets/js/17.5d2ab2a9.js"><link rel="prefetch" href="/notebook/assets/js/18.c9604d65.js"><link rel="prefetch" href="/notebook/assets/js/19.2b2ce77b.js"><link rel="prefetch" href="/notebook/assets/js/20.9d02ae9a.js"><link rel="prefetch" href="/notebook/assets/js/21.7f3931b8.js"><link rel="prefetch" href="/notebook/assets/js/22.b387c5e5.js"><link rel="prefetch" href="/notebook/assets/js/3.06f25fa6.js"><link rel="prefetch" href="/notebook/assets/js/4.ec467db5.js"><link rel="prefetch" href="/notebook/assets/js/5.f9c5e223.js"><link rel="prefetch" href="/notebook/assets/js/6.baa1fc2a.js"><link rel="prefetch" href="/notebook/assets/js/8.1756074b.js"><link rel="prefetch" href="/notebook/assets/js/9.de3646f5.js">
     <link rel="stylesheet" href="/notebook/assets/css/0.styles.46e04c92.css">
   </head>
   <body>
@@ -16,7 +16,7 @@
   Home
 </a></div><div class="nav-item"><a href="/notebook/algorithm/one.html" class="nav-link">
   Algorithm
-</a></div><div class="nav-item"><a href="/notebook/browser/" class="nav-link">
+</a></div><div class="nav-item"><a href="/notebook/browser/one.html" class="nav-link">
   Browser
 </a></div><div class="nav-item"><a href="/notebook/vue/one.html" class="nav-link">
   Vue
@@ -36,7 +36,7 @@
   Home
 </a></div><div class="nav-item"><a href="/notebook/algorithm/one.html" class="nav-link">
   Algorithm
-</a></div><div class="nav-item"><a href="/notebook/browser/" class="nav-link">
+</a></div><div class="nav-item"><a href="/notebook/browser/one.html" class="nav-link">
   Browser
 </a></div><div class="nav-item"><a href="/notebook/vue/one.html" class="nav-link">
   Vue
@@ -232,11 +232,11 @@ microTask。按理说目前还处在同一个事件循环，而且还没有进�
 <span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span>
 </code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br></div></div><p>因为 alert 能够阻塞渲染浏览器渲染，所以这里用到它。 在 alert 之前我们 console 了最新设置 dom 的内容，从控制台已经拿到了最新设置的 title。但是浏览器还没有进行渲染。再点击“确定”后，浏览器才进行渲染。</p> <p>我之前一直以为获取新的 dom 节点必须等 UI Render 完成之后才能获取到，然而并不是这样的。 结论：在主线程及 microTask 执行过程中，每一次 dom 或 css 更新，浏览器都会进行计算，而计算的结果并不会被立刻渲染，而是在当所有的 microTask 队列中任务都执行完毕后，统一进行渲染（这也是浏览器为了提高渲染性能和体验做的优化）所以，这个时候通过 js 访问更新后的 dom 节点或者 css 是可以拿到的，因为浏览器已经完成计算，仅仅是它们还没被渲染而已。</p> <h3 id="总结"><a href="#总结" class="header-anchor">#</a> 总结</h3> <p>到这里的话，关于 nextTick 和浏览器的事件循环的相关知识就全部介绍完毕了，总结一下的话就是，nextTick 是基于浏览器的事件循环机制来获取更新后的 DOM，采取的策略是优雅降级：优先考虑用微任务 promise 和
 MutationObserver 实现，其次是用宏任务 setImmediate 和 setTimeout 来实现。 了解 nextTick 的实现，不仅可以让我们重温浏览器事件循环的相关知识，更可以帮我们更好把 nextTick
-应用到项目中去，定位相关的数据问题时也会更游刃有余，学以致用，才是我们不停学习的目的。至此，关于 nextTick 和浏览器事件循环全部结束，欢迎大家学习交流。</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+应用到项目中去，定位相关的数据问题时也会更游刃有余，学以致用，才是我们不停学习的目的。至此，关于 nextTick 和浏览器事件循环全部结束，欢迎大家学习交流。</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">12/31/2021, 5:41:59 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
       ←
       <a href="/notebook/vue/one.html" class="prev">
         基础
       </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
-    <script src="/notebook/assets/js/app.fe60a1a8.js" defer></script><script src="/notebook/assets/js/2.da5ddc4c.js" defer></script><script src="/notebook/assets/js/7.7ed7eeac.js" defer></script>
+    <script src="/notebook/assets/js/app.1ae419a7.js" defer></script><script src="/notebook/assets/js/2.da5ddc4c.js" defer></script><script src="/notebook/assets/js/7.0c4d68ce.js" defer></script>
   </body>
 </html>

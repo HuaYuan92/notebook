@@ -1,5 +1,3 @@
-# 浏览器
-
 ## 一 缓存
 
 [参考资料-简书](https://www.jianshu.com/p/54cc04190252) \
@@ -142,12 +140,3 @@ HTTP Header 实现：Expires 和 Cache-Control。
   
 * 不常变化的资源 - Cache-Control: max-age=31536000
 
-
-
-## 二 使用service worker实现前端性能优化
-
-## 三 如何构建一个浏览器引擎
-
-## 四 preload和prefetch
-## 五 CORS
-[CORS-MDN](https://developer.mozilla.org/zh-CN/docs/Glossary/CORS)

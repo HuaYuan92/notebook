@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>二 使用service worker实现前端性能优化 | NoteBook</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="/notebook/logo.png">
+    <meta name="description" content="my notebook --xy">
+    
+    <link rel="preload" href="/notebook/assets/css/0.styles.46e04c92.css" as="style"><link rel="preload" href="/notebook/assets/js/app.1ae419a7.js" as="script"><link rel="preload" href="/notebook/assets/js/2.da5ddc4c.js" as="script"><link rel="preload" href="/notebook/assets/js/16.3f4a7d30.js" as="script"><link rel="prefetch" href="/notebook/assets/js/10.a9447afd.js"><link rel="prefetch" href="/notebook/assets/js/11.50c4e498.js"><link rel="prefetch" href="/notebook/assets/js/12.d75211e7.js"><link rel="prefetch" href="/notebook/assets/js/13.644bf7ee.js"><link rel="prefetch" href="/notebook/assets/js/14.66f3a9fa.js"><link rel="prefetch" href="/notebook/assets/js/15.f3eefe6c.js"><link rel="prefetch" href="/notebook/assets/js/17.5d2ab2a9.js"><link rel="prefetch" href="/notebook/assets/js/18.c9604d65.js"><link rel="prefetch" href="/notebook/assets/js/19.2b2ce77b.js"><link rel="prefetch" href="/notebook/assets/js/20.9d02ae9a.js"><link rel="prefetch" href="/notebook/assets/js/21.7f3931b8.js"><link rel="prefetch" href="/notebook/assets/js/22.b387c5e5.js"><link rel="prefetch" href="/notebook/assets/js/3.06f25fa6.js"><link rel="prefetch" href="/notebook/assets/js/4.ec467db5.js"><link rel="prefetch" href="/notebook/assets/js/5.f9c5e223.js"><link rel="prefetch" href="/notebook/assets/js/6.baa1fc2a.js"><link rel="prefetch" href="/notebook/assets/js/7.0c4d68ce.js"><link rel="prefetch" href="/notebook/assets/js/8.1756074b.js"><link rel="prefetch" href="/notebook/assets/js/9.de3646f5.js">
+    <link rel="stylesheet" href="/notebook/assets/css/0.styles.46e04c92.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/notebook/" class="home-link router-link-active"><img src="/notebook/logo.png" alt="NoteBook" class="logo"> <span class="site-name can-hide">NoteBook</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/notebook/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/notebook/algorithm/one.html" class="nav-link">
+  Algorithm
+</a></div><div class="nav-item"><a href="/notebook/browser/one.html" class="nav-link">
+  Browser
+</a></div><div class="nav-item"><a href="/notebook/vue/one.html" class="nav-link">
+  Vue
+</a></div><div class="nav-item"><a href="/notebook/javascript/" class="nav-link">
+  JS
+</a></div><div class="nav-item"><a href="/notebook/css/" class="nav-link">
+  CSS
+</a></div><div class="nav-item"><a href="/notebook/network/" class="nav-link">
+  Network
+</a></div><div class="nav-item"><a href="/notebook/tools/" class="nav-link">
+  工程化
+</a></div><div class="nav-item"><a href="/notebook/others/" class="nav-link">
+  其他
+</a></div><div class="nav-item"><a href="https://github.com/HuaYuan92/notebook" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/notebook/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/notebook/algorithm/one.html" class="nav-link">
+  Algorithm
+</a></div><div class="nav-item"><a href="/notebook/browser/one.html" class="nav-link">
+  Browser
+</a></div><div class="nav-item"><a href="/notebook/vue/one.html" class="nav-link">
+  Vue
+</a></div><div class="nav-item"><a href="/notebook/javascript/" class="nav-link">
+  JS
+</a></div><div class="nav-item"><a href="/notebook/css/" class="nav-link">
+  CSS
+</a></div><div class="nav-item"><a href="/notebook/network/" class="nav-link">
+  Network
+</a></div><div class="nav-item"><a href="/notebook/tools/" class="nav-link">
+  工程化
+</a></div><div class="nav-item"><a href="/notebook/others/" class="nav-link">
+  其他
+</a></div><div class="nav-item"><a href="https://github.com/HuaYuan92/notebook" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/notebook/browser/one.html" class="sidebar-link">缓存</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/notebook/browser/one.html#一-缓存" class="sidebar-link">一 缓存</a></li></ul></li><li><a href="/notebook/browser/two.html" aria-current="page" class="active sidebar-link">探秘nextTick</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/notebook/browser/two.html#二-使用service-worker实现前端性能优化" class="sidebar-link">二 使用service worker实现前端性能优化</a></li><li class="sidebar-sub-header"><a href="/notebook/browser/two.html#三-如何构建一个浏览器引擎" class="sidebar-link">三 如何构建一个浏览器引擎</a></li><li class="sidebar-sub-header"><a href="/notebook/browser/two.html#四-preload和prefetch" class="sidebar-link">四 preload和prefetch</a></li><li class="sidebar-sub-header"><a href="/notebook/browser/two.html#五-cors" class="sidebar-link">五 CORS</a></li></ul></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="二-使用service-worker实现前端性能优化"><a href="#二-使用service-worker实现前端性能优化" class="header-anchor">#</a> 二 使用service worker实现前端性能优化</h2> <h2 id="三-如何构建一个浏览器引擎"><a href="#三-如何构建一个浏览器引擎" class="header-anchor">#</a> 三 如何构建一个浏览器引擎</h2> <h2 id="四-preload和prefetch"><a href="#四-preload和prefetch" class="header-anchor">#</a> 四 preload和prefetch</h2> <h2 id="五-cors"><a href="#五-cors" class="header-anchor">#</a> 五 CORS</h2> <p><a href="https://developer.mozilla.org/zh-CN/docs/Glossary/CORS" target="_blank" rel="noopener noreferrer">CORS-MDN<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/notebook/browser/one.html" class="prev">
+        缓存
+      </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/notebook/assets/js/app.1ae419a7.js" defer></script><script src="/notebook/assets/js/2.da5ddc4c.js" defer></script><script src="/notebook/assets/js/16.3f4a7d30.js" defer></script>
+  </body>
+</html>

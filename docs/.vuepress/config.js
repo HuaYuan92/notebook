@@ -10,7 +10,7 @@ module.exports = {
     nav: [
       {text: 'Home', link: '/'},
       {text: 'Algorithm', link: '/algorithm/one'},
-      {text: 'Browser', link: '/browser/'},
+      {text: 'Browser', link: '/browser/one'},
       {text: 'Vue', link: '/vue/one'},
       {text: 'JS', link: '/javascript/'},
       {text: 'CSS', link: '/css/'},
@@ -27,6 +27,10 @@ module.exports = {
         ['four', '链表'],
         ['five', '栈、堆、垃圾回收）'],
         ['six', '队列'],
+      ],
+      '/browser/': [
+        ['one', '缓存'],
+        ['two', '探秘nextTick']
       ],
       '/vue/': [
         ['one', '基础'],
