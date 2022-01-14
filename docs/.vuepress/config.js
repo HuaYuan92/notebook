@@ -15,7 +15,7 @@ module.exports = {
       {text: 'JS', link: '/javascript/'},
       {text: 'CSS', link: '/css/'},
       {text: 'Network', link: '/network/'},
-      {text: '工程化', link: '/tools/'},
+      {text: '工程化', link: '/tools/one'},
       {text: '其他', link: '/others/'},
       {text: 'Github', link: 'https://github.com/HuaYuan92/notebook'},
     ],
@@ -30,11 +30,15 @@ module.exports = {
       ],
       '/browser/': [
         ['one', '缓存'],
-        ['two', '探秘nextTick']
+        ['two', '其他']
       ],
       '/vue/': [
         ['one', '基础'],
         ['two', '探秘nextTick']
+      ],
+      '/tools/': [
+        ['one', '前端监控'],
+        ['two', '其他']
       ]
     },
     smoothScroll: true,
