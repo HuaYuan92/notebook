@@ -14,7 +14,7 @@ module.exports = {
       {text: 'Vue', link: '/vue/one'},
       {text: 'JS', link: '/javascript/'},
       {text: 'CSS', link: '/css/'},
-      {text: 'Network', link: '/network/'},
+      {text: 'Network', link: '/network/one'},
       {text: '工程化', link: '/tools/one'},
       {text: '其他', link: '/others/'},
       {text: 'Github', link: 'https://github.com/HuaYuan92/notebook'},
@@ -31,6 +31,9 @@ module.exports = {
       '/browser/': [
         ['one', '缓存'],
         ['two', '其他']
+      ],
+      '/network/': [
+        ['one', '网络']
       ],
       '/vue/': [
         ['one', '基础'],

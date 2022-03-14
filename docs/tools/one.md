@@ -895,6 +895,14 @@ export default function onVueRouter(router) {
 
 为此，做了个实验，在 beforeunload 用 XMLHttpRequest 传送了 30kb 的数据（一般的待上报数据很少会有这么大），换了不同的浏览器，都可以成功发出去。当然，这和硬件性能、网络状态也是有关联的。
 
+::: tip
+使用new Image进行接口上报。最后一个问题，同样都是图片，上报时选用了1x1的透明GIF，
+同样的响应，GIF可以比BMP节约41%的流量，比PNG节约35%的流量。GIF才是最佳选择。
+* 可以进行跨域
+* 不会携带cookie
+* 不需要等待服务器返回数据
+:::
+
 ### 上报时机
 上报时机有三种：
 

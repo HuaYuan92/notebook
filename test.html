@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script>
+    window.addEventListener('error', (error) => {
+      console.log('捕获到异常：', error);
+    }, true)
+  </script>
+
+</head>
+<body>
+
+</body>
+<script>
+  new Image().src = 'https://yun.tuia.cn/image/lll.png'
+</script>
+
+
+</html>
