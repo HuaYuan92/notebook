@@ -30,7 +30,7 @@ module.exports = {
       ],
       '/browser/': [
         ['one', '缓存'],
-        ['two', '其他']
+        ['two', 'Web Components']
       ],
       '/network/': [
         ['one', '网络']
